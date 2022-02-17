@@ -1,0 +1,25 @@
+# conda environment file for partis
+# mostly adapted from the partis Dockerfile
+# needs the varous dev tools installed at the OS-level
+name: example-partis
+channels:
+  # -cbioconda is for pysam, -cbiocore is for mafft
+  - biocore
+  - bioconda
+  - defaults
+dependencies:
+  - python=2.7
+  - biopython
+  - pandas
+  - psutil
+  - pysam
+  - scons
+  - seaborn
+  - zlib
+  - pyyaml
+  - scikit-learn
+  - mafft
+  # Dockerfile installed dendropy and colored-traceback via pip, but they're
+  # available in bioconda and conda-forge
+  - dendropy=4.4.0
+  - conda-forge::colored-traceback
