@@ -120,7 +120,7 @@ shows the way:
     }
 
 This way each sequence in a pair references the other sequence.  For example,
-`3652967728590454646-igh` has a single item in a list of `paired-uids'
+`3652967728590454646-igh` has a single item in a list of `paired-uids`
 pointing to `3652967728590454646-igk`, and vice versa, and each locus is given.
 Those sequence IDs match what's in the all-seqs.fa file alongside the YAML.
 
