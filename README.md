@@ -10,6 +10,10 @@ Setting up conda environment with dependencies:
     conda env update --file environment.yml
     conda activate example-partis
 
+(Pro tip: use [mamba](https://mamba.readthedocs.io/en/latest/index.html) as a
+drop-in replacement for conda for an enormous speed-up of dependency
+resolution.)
+
 Setting up partis itself:
 
     # Lots of additional software is supplied via git submodules, so we'll make
@@ -25,6 +29,8 @@ Setting up partis itself:
     # Dependencies are installed in $CONDA_PREFIX but partis itself lives right
     # here, so we'll put it on the PATH
     export PATH="$PATH:$PWD/partis/bin"
+
+Compiling all the different components via the build script can take a while.
 
 The PATH change could be [incorporated into the conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html),
 too, instead of being manual.  Also, the partis repo is huge (> 1 GB with all
@@ -51,9 +57,9 @@ sequences, but the test script includes an example that scrolls by as it runs:
     partition-new-simu               .../example-partis/partis/bin/partis partition --dont-write-git-info --paired-loci --paired-indir test/paired/ref-results/test/simu --parameter-dir test/paired/new-results/test/parameters/simu --plot-annotation-performance --is-simu --plotdir test/paired/new-results/partition-new-simu-annotation-performance --only-csv-plots --no-partition-plots --random-seed 1 --n-procs 10 --paired-outdir test/paired/new-results/partition-new-simu
         chose seed uids 4353653356901731430-igh 4353653356901731430-igk with loci igh igk from cluster with size 6 (was asked for size in [5, 10])
     seed-partition-new-simu          .../example-partis/partis/bin/partis partition --dont-write-git-info --paired-loci --paired-indir test/paired/ref-results/test/simu --parameter-dir test/paired/new-results/test/parameters/simu --is-simu --seed-unique-id 4353653356901731430-igh:4353653356901731430-igk --seed-loci igh:igk --random-seed 1 --n-procs 10 --paired-outdir test/paired/new-results/seed-partition-new-simu
-   get-selection-metrics-new-simu   .../example-partis/partis/bin/partis get-selection-metrics --dont-write-git-info --paired-loci --random-seed 1 --n-procs 10 --paired-outdir test/paired/new-results/partition-new-simu --chosen-ab-fname test/paired/new-results/get-selection-metrics-new-simu-chosen-abs.csv
-   cache-parameters-data            .../example-partis/partis/bin/partis cache-parameters --dont-write-git-info --paired-loci --paired-indir test/paired-data --parameter-dir test/paired/new-results/test/parameters/data --n-max-queries 50 --random-seed 1 --n-procs 10
-   simulate                         .../example-partis/partis/bin/partis simulate --dont-write-git-info --paired-loci --parameter-dir test/paired/new-results/test/parameters/data --n-sim-events 10 --n-trees 10 --n-leaf-distribution geometric --n-leaves 5 --min-observations-per-gene 5 --random-seed 1 --n-procs 10 --paired-outdir test/paired/new-results/test/simu --indel-frequency 0.2
+    get-selection-metrics-new-simu   .../example-partis/partis/bin/partis get-selection-metrics --dont-write-git-info --paired-loci --random-seed 1 --n-procs 10 --paired-outdir test/paired/new-results/partition-new-simu --chosen-ab-fname test/paired/new-results/get-selection-metrics-new-simu-chosen-abs.csv
+    cache-parameters-data            .../example-partis/partis/bin/partis cache-parameters --dont-write-git-info --paired-loci --paired-indir test/paired-data --parameter-dir test/paired/new-results/test/parameters/data --n-max-queries 50 --random-seed 1 --n-procs 10
+    simulate                         .../example-partis/partis/bin/partis simulate --dont-write-git-info --paired-loci --parameter-dir test/paired/new-results/test/parameters/data --n-sim-events 10 --n-trees 10 --n-leaf-distribution geometric --n-leaves 5 --min-observations-per-gene 5 --random-seed 1 --n-procs 10 --paired-outdir test/paired/new-results/test/simu --indel-frequency 0.2
 
 Some relevant options:
 
@@ -119,7 +125,7 @@ pointing to `3652967728590454646-igk`, and vice versa, and each locus is given.
 Those sequence IDs match what's in the all-seqs.fa file alongside the YAML.
 
 So if we just had the all-seqs.fa and the meta.yaml, we can create the full
-input directory from those.  The partis script has a few harcoded instances of
+input directory from those.  The partis script has a few hardcoded instances of
 `./bin/...` so we need to be inside the partis directory for this to work.
 
     $ cd partis
