@@ -1,11 +1,14 @@
 # conda environment file for partis
 # mostly adapted from the partis Dockerfile
-# needs the varous dev tools installed at the OS-level
+# Still needs the varous dev tools installed at the OS-level
 name: example-partis
 channels:
-  # -cbioconda is for pysam, -cbiocore is for mafft
+  # Lower down here is lower priority, so the default sources should be the
+  # last resort
+  # From Dockerfile: -cbioconda is for pysam, -cbiocore is for mafft
   - biocore
   - bioconda
+  - conda-forge
   - defaults
 dependencies:
   - python=2.7
@@ -22,4 +25,14 @@ dependencies:
   # Dockerfile installed dendropy and colored-traceback via pip, but they're
   # available in bioconda and conda-forge
   - dendropy=4.4.0
-  - conda-forge::colored-traceback
+  - colored-traceback
+  # Optional, but needed for the simulation features (see docs/install.md)
+  # Note warnings there about conda screwing with the compiler setup though.
+  # Probably related to all the stuff that ends up in
+  # $CONDA_PREFIX/etc/conda/activate.d
+  # (I have it working now, possibly because of the channel priority handling
+  # giving a compatible set of packages with conda-forge's sysroot_linux-64,
+  # but see pkgs.txt for the exact list of what packages that includes)
+  - r
+  - r-treesim
+  # TODO also need TreeSimGM, I think, but I don't see it in the conda channels
