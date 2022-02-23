@@ -41,7 +41,8 @@ subdirectory).
 ## Usage
 
 Running all tests (paired/non-paired, slow/non-slow) with unlimited print width
-so we can see everything:
+so we can see everything, and from a subshell inside the partis repository
+since the test script expects that:
 
     $ ( cd partis && ./test/test.py --run-all --print-width 0)
     run ./test/test.py --print-width 0
@@ -49,8 +50,10 @@ so we can see everything:
     annotate-new-simu                .../example-partis/partis/bin/partis annotate --dont-write-git-info --infname test/ref-results/test/simu.yaml --parameter-dir test/new-results/test/parameters/simu --sw-cachefname test/new-results/test/parameters/simu/sw-cache.yaml --plot-annotation-performance --is-simu --plotdir test/new-results/annotate-new-simu-annotation-performance --only-csv-plots --random-seed 1 --n-procs 10 --outfname test/new-results/annotate-new-simu.yaml
     ...
 
-I wasn't totally clear from the docs how to supply paired heavy and light chain
-sequences, but the test script includes an example that scrolls by as it runs:
+It complains a little for me about changes in runtimes and counts of output
+files, but everything seems to run OK in the end.  I wasn't totally clear from
+the docs how to supply paired heavy and light chain sequences, but the test
+script includes an example that scrolls by as it runs:
 
     run ./test/test.py --print-width 0 --paired
     cache-parameters-simu            .../example-partis/partis/bin/partis cache-parameters --dont-write-git-info --paired-loci --paired-indir test/paired/ref-results/test/simu --parameter-dir test/paired/new-results/test/parameters/simu --is-simu --random-seed 1 --n-procs 10
