@@ -40,6 +40,8 @@ subdirectory).
 
 ## Usage
 
+### Running the Tests
+
 Running all tests (paired/non-paired, slow/non-slow) with unlimited print width
 so we can see everything, and from inside the partis repository since the test
 script expects that:
@@ -127,9 +129,12 @@ This way each sequence in a pair references the other sequence.  For example,
 pointing to `3652967728590454646-igk`, and vice versa, and each locus is given.
 Those sequence IDs match what's in the all-seqs.fa file alongside the YAML.
 
-So if we just had the all-seqs.fa and the meta.yaml, we can create the full
-input directory from those.  The partis script has a few hardcoded instances of
-`./bin/...` so we need to be inside the partis directory for this to work.
+### Trying it Out
+
+So, if we just have an all-seqs.fa and a meta.yaml, we can create a full input
+directory from those.  We should be able to use ones from the test directory
+here.  The partis script has a few hardcoded instances of `./bin/...` so we
+need to be inside the partis directory for this to work.
 
     $ cd partis
     $ partis cache-parameters --paired-loci \
@@ -163,7 +168,7 @@ directory (paired-example-params):
 
 We can run a partition command with that already-prepared input directory:
 
-    partis partition --paired-loci --paired-indir paired-example-input --parameter-dir paired-example-params --paired-outdir paired-example-outdir
+    $ partis partition --paired-loci --paired-indir paired-example-input --parameter-dir paired-example-params --paired-outdir paired-example-outdir
 
 By the end the file `paired-example-outdir/partition-igh.yaml` doesn't just
 have partition info for heavy chain (igh) sequences, but is also updated for
