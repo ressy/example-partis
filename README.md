@@ -271,6 +271,29 @@ still only get one in the output.  The log probability is also given as 0
 detail being lost when merging information for the separate per-locus
 partitionings together?
 
+### Reproducibility
+
+Re-running the same partition commands with the same inputs can give slightly
+varying outputs.  What's going on there?  There's a configurable random seed
+that just defaults to the current time, which ensures random behavior by
+default:
+
+    $ partis partition --help | grep RANDOM_SEED$ -A 1; date +%s
+      --random-seed RANDOM_SEED
+                            Random seed used by many different things, but especially when reshuffling sequences between partitioning steps, and during simulation. Set this if you want to get exactly the same result when rerunning. (default: 1645635638)
+    1645635638
+    $ partis partition --help | grep RANDOM_SEED$ -A 1; date +%s
+      --random-seed RANDOM_SEED
+                            Random seed used by many different things, but especially when reshuffling sequences between partitioning steps, and during simulation. Set this if you want to get exactly the same result when rerunning. (default: 1645635646)
+    1645635646
+
+Setting that to a particular number makes the output fully consistent between
+runs.
+
+But in the larger scheme of things what behavior here is stochastic and what
+isn't, and how consistent should the output be expected to be?  With this
+paired analysis, for example, I sometimes get 11 clusters and sometimes 12.
+
 ## Output Handling
 
 Partis has a wonderfully information-rich command-line interface to the details
@@ -333,8 +356,9 @@ I try:
 
 In any case the existing JSON/YAML files should be easy enough to parse as needed.
 
-Remaining questions:
+My remaining questions:
 
+ * How much randomness should be expected in the output?
  * Why the one-partition behavior and logprob of 0 with `--paired-loci`?
  * Why does `--airr-output` crash?
 
