@@ -169,6 +169,21 @@ directory (paired-example-params):
 We can run a partition command with that already-prepared input directory:
 
     $ partis partition --paired-loci --paired-indir paired-example-input --parameter-dir paired-example-params --paired-outdir paired-example-outdir
+    partition igh:
+      note: adding input metafname from default location (paired-example-input/meta.yaml)
+    run .../partis/bin/partis partition --locus igh --parameter-dir paired-example-params/igh --refuse-to-cache-parameters --infname paired-example-input/igh.fa --outfname paired-example-outdir/single-chain/partition-igh.yaml --sw-cachefname paired-example-params/igh/sw-cache.yaml --input-metafnames paired-example-input/meta.yaml
+      --input-metafnames: added meta info for 63 sequences from paired-example-input/meta.yaml: paired-uids
+    partitioning     (with paired-example-params/igh/hmm)
+    smith-waterman
+      vsearch: 63 / 63 v annotations (0 failed) with 7 v genes in 0.1 sec
+            reading sw results from paired-example-params/igh/sw-cache.yaml
+          info for 63 / 63 = 1.000   (removed: 0 failed, 0 duplicates)
+          kept 18 (0.286) unproductive
+            water time: 0.0
+    hmm
+    caching all 63 naive sequences
+        running 56 procs
+    ...
 
 By the end the file `paired-example-outdir/partition-igh.yaml` doesn't just
 have partition info for heavy chain (igh) sequences, but is also updated for
