@@ -41,8 +41,8 @@ subdirectory).
 ## Usage
 
 Running all tests (paired/non-paired, slow/non-slow) with unlimited print width
-so we can see everything, and from a subshell inside the partis repository
-since the test script expects that:
+so we can see everything, and from inside the partis repository since the test
+script expects that:
 
     $ ( cd partis && ./test/test.py --run-all --print-width 0)
     run ./test/test.py --print-width 0
