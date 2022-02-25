@@ -22,10 +22,11 @@ dependencies:
   - pyyaml
   - scikit-learn
   - mafft
-  # Dockerfile installed dendropy and colored-traceback via pip, but they're
-  # available in bioconda and conda-forge
+  # Dockerfile installs these via pip, but they're also available in bioconda
+  # and conda-forge
   - dendropy=4.4.0
   - colored-traceback
+  - python-levenshtein
   # Optional, but needed for the simulation features (see docs/install.md)
   # Note warnings there about conda screwing with the compiler setup though.
   # Probably related to all the stuff that ends up in

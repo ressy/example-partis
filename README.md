@@ -337,29 +337,17 @@ like FASTA:
         taking all 11 clusters
       writing 63 sequences to partition.fa
 
-I should be able to get AIRR output with that, too, but it crashes for me when
-I try:
+Or AIRR TSV:
 
     $ parse-output.py --airr-output partition.yaml partition.tsv
-      found 11 clusters in best partition
-        taking all 11 clusters
-      writing 11 sequences to partition.tsv
+      found 12 clusters in best partition
+        taking all 12 clusters
+      writing 12 sequences to partition.tsv
        writing airr annotations to partition.tsv
-    Traceback (most recent call last):
-      File "./partis/bin/parse-output.py", line 179, in <module>
-        utils.write_airr_output(args.outfile, annotation_list, cpath=cpath, extra_columns=args.extra_columns, skip_columns=args.skip_columns)
-      File "/data/home/jesse/dev/examples/example-partis/partis/python/utils.py", line 1649, in write_airr_output
-        aline = get_airr_line(line, iseq, partition=None if cpath is None else cpath.partitions[cpath.i_best], extra_columns=extra_columns, skip_columns=skip_columns, debug=debug)
-      File "/data/home/jesse/dev/examples/example-partis/partis/python/utils.py", line 1566, in get_airr_line
-        aline[akey] = get_droplet_id(pline['unique_ids'][iseq])
-    TypeError: get_droplet_id() takes at least 3 arguments (1 given)
-
-In any case the existing JSON/YAML files should be easy enough to parse as needed.
 
 My remaining questions:
 
  * How much randomness should be expected in the output?
  * Why the one-partition behavior and logprob of 0 with `--paired-loci`?
- * Why does `--airr-output` crash?
 
 [partis]: https://github.com/psathyrella/partis
